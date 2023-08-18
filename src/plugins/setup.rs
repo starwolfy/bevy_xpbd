@@ -218,9 +218,9 @@ fn run_physics_schedule(world: &mut World) {
         .expect("no PhysicsLoop resource");
 
     #[cfg(feature = "f32")]
-    let delta_seconds = world.resource::<Time>().delta_seconds();
+    let delta_seconds = world.resource::<FixedTime>().period.as_secs_f32();
     #[cfg(feature = "f64")]
-    let delta_seconds = world.resource::<Time>().delta_seconds_f64();
+    let delta_seconds = world.resource::<FixedTime>().period.as_secs_f64();
 
     let time_step = *world.resource::<PhysicsTimestep>();
     let time_scale = world.resource::<PhysicsTimescale>().0;
